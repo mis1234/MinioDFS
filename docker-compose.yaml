@@ -23,6 +23,7 @@ services:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
   minio1:
     <<: *minio-common
+    restart: unless-stopped
     ports:
       - "9000:9000"
       - "9001:9001"
@@ -47,3 +48,8 @@ services:
 
 volumes:
   data1-1:
+    driver: local
+    driver_opts:
+      type: none
+      device: /mnt/data
+      o: bind
