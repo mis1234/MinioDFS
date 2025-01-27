@@ -16,6 +16,7 @@ x-minio-common: &minio-common
 services:
   prometheus:
     image: prom/prometheus
+    restart: unless-stopped
     command: --config.file=/etc/prometheus/prometheus.yml
     ports:
       - "9090:9090"
@@ -37,6 +38,7 @@ services:
         target: /etc/config.env
   grafana:
     image: grafana/grafana
+    restart: unless-stopped
     ports:
       - "3000:3000"
     environment:
